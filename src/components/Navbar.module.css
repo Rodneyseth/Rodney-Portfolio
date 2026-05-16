@@ -1,0 +1,105 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.scrolled {
+  background: rgba(4, 6, 15, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.logoText { color: var(--text); }
+.logoDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 10px var(--glow);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 10px var(--glow); }
+  50%       { box-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow2); }
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.link {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+}
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+  border-radius: 1px;
+}
+.link:hover { color: var(--text); }
+.link:hover::after { transform: scaleX(1); }
+.cta { font-size: 13px; padding: 10px 22px; }
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+.burger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center;
+}
+.burger .barOpen:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger .barOpen:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger .barOpen:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .burger { display: flex; }
+  .links {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(4,6,15,0.98);
+    backdrop-filter: blur(20px);
+    gap: 40px;
+    font-size: 22px;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .links.open { transform: translateX(0); }
+  .cta { font-size: 18px; padding: 16px 40px; }
+  .link { font-size: 20px; }
+}

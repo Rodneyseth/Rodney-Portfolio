@@ -1,0 +1,114 @@
+.exp {
+  background: var(--bg3);
+  position: relative;
+  overflow: hidden;
+}
+.exp::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--border), transparent);
+  pointer-events: none;
+}
+
+.timeline { display: flex; flex-direction: column; }
+
+.item {
+  display: flex;
+  gap: 28px;
+}
+
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 20px;
+}
+.dot {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 16px rgba(168,85,247,0.5);
+  flex-shrink: 0;
+  margin-top: 4px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.item:hover .dot {
+  transform: scale(1.3);
+  box-shadow: 0 0 24px rgba(168,85,247,0.7);
+}
+.line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, var(--border2), var(--border));
+  margin: 10px 0;
+  min-height: 40px;
+}
+
+.body {
+  flex: 1;
+  padding-bottom: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.item:hover .body {
+  border-color: var(--border2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.role {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.company {
+  font-size: 14px;
+  font-weight: 500;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.period {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  padding: 5px 14px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.points { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.points li {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.75;
+  padding-left: 20px;
+  position: relative;
+}
+.points li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+  font-size: 12px;
+  top: 3px;
+}

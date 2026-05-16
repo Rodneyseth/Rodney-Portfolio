@@ -1,0 +1,29 @@
+.footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+}
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.name {
+  font-weight: 800;
+  font-size: 16px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.copy { font-size: 13px; color: var(--dim); }
+.links { display: flex; gap: 28px; }
+.links a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: color 0.2s;
+  font-weight: 500;
+}
+.links a:hover { color: var(--accent2); }
