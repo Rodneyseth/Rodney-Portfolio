@@ -26,19 +26,19 @@ const categories = [
     label: 'Domain Expertise',
     color: 'var(--accent3)',
     skills: [
-      { name: 'Telecom / GSM / CDR', level: 92 },
+      { name: 'Market Products Analytics', level: 92 },
+      { name: 'Business Performance & KPIs', level: 90 },
+      { name: 'Revenue & P&L Analysis', level: 85 },
       { name: 'CVM & Campaign Analytics', level: 85 },
-      { name: 'Consumer P&L & Revenue', level: 80 },
-      { name: 'Data Governance & QA', level: 83 },
     ],
   },
 ]
 
 const tools = [
-  'DAX', 'Power Query', 'Data Modelling', 'CDR Analytics',
-  'ARPU Analysis', 'Churn Modelling', 'Cohort Analysis',
+  'DAX', 'Power Query', 'Data Modelling', 'Product Performance Analysis',
+  'Market Mix Analysis', 'Churn Modelling', 'Cohort Analysis',
   'Agile / Scrum', 'Stakeholder Engagement', 'Data Storytelling',
-  'SEO Analytics', 'Fraud Detection',
+  'Revenue Forecasting', 'Fraud Detection',
 ]
 
 export default function Skills() {
@@ -51,7 +51,7 @@ export default function Skills() {
           <span className="section-label">// Skills & Tools</span>
           <h2 className="section-title">My Technical Stack</h2>
           <p className="section-sub">
-            A blend of BI tools, analytical techniques and deep telecom domain knowledge built over 6+ years.
+            A blend of BI tools, analytical techniques and deep market products and business performance expertise built over 6+ years.
           </p>
           <div className="divider" />
         </div>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -9,19 +10,19 @@ export default function Hero() {
       <div className={styles.grid} aria-hidden="true" />
 
       <div className={`container ${styles.content}`}>
-        <span className={`section-label ${styles.pre}`}>// Senior Data Analyst · Telecom & Product Intelligence</span>
+        <span className={`section-label ${styles.pre}`}>// Senior Data Analyst · Market Products & Business Performance</span>
         <h1 className={styles.name}>
           Rodney Seth
           <span className={styles.surname}>Nyagonchong&apos;a</span>
         </h1>
         <p className={styles.tagline}>
-          Turning complex telecoms data into clear, actionable strategy.
+          Turning market and product data into clear business performance strategy.
           <br />
-          <span>SQL · Python · Power BI · DAX · CDR Analytics</span>
+          <span>SQL · Python · Power BI · DAX · Product & Revenue Analytics</span>
         </p>
         <div className={styles.actions}>
-          <a href="#projects" className="btn btn-primary">View My Work →</a>
-          <a href="#contact" className="btn btn-outline">Get In Touch</a>
+          <Link to="/projects" className="btn btn-primary">View My Work →</Link>
+          <Link to="/contact" className="btn btn-outline">Get In Touch</Link>
         </div>
 
         <div className={styles.stats}>
@@ -34,7 +35,7 @@ export default function Hero() {
             <span className={styles.statLabel}>Current Employer</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statNum}>BI &amp; CVM</span>
+            <span className={styles.statNum}>Products &amp; Perf</span>
             <span className={styles.statLabel}>Core Specialisation</span>
           </div>
         </div>

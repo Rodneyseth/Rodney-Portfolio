@@ -1,0 +1,173 @@
+.page {
+  min-height: 100vh;
+  padding: 120px 0 100px;
+  background: var(--bg);
+}
+
+.header { margin-bottom: 8px; }
+
+.title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+/* ── Category ── */
+.category {
+  padding: 56px 0;
+  border-top: 1px solid var(--border);
+}
+
+.catTitle {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.catNum {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+/* ── Tool cards ── */
+.toolGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.toolCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+.toolCard:hover { border-color: var(--border2); }
+
+.toolHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.toolName { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.toolTags { display: flex; flex-wrap: wrap; gap: 6px; }
+.toolTag {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--mono);
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid;
+  letter-spacing: 0.04em;
+}
+.toolLevel {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.track {
+  height: 4px;
+  background: var(--bg2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+.toolDesc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── Competencies ── */
+.competencyGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.competency {
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.competency:hover { border-color: var(--accent2); color: var(--accent2); }
+
+/* ── Learning ── */
+.learningList { display: flex; flex-direction: column; gap: 12px; }
+.learningItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.learningDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.learningDot[data-status='progress'] { background: #fbbf24; }
+.learningDot[data-status='explore'] { background: var(--accent2); }
+.learningText { flex: 1; font-size: 14px; font-weight: 500; }
+.learningStatus {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+}
+.learningStatus[data-status='progress'] { color: #fbbf24; border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.1); }
+.learningStatus[data-status='explore'] { color: var(--accent2); border-color: color-mix(in srgb, var(--accent2) 30%, transparent); background: color-mix(in srgb, var(--accent2) 10%, transparent); }
+
+/* ── CTAs ── */
+.ctaRow { display: flex; gap: 14px; padding-top: 16px; flex-wrap: wrap; }
+.ctaBtn {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--mono);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+.ctaBtn[data-variant='primary'] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ctaBtn[data-variant='primary']:hover { opacity: 0.85; }
+.ctaBtn[data-variant='outline'] { background: transparent; border-color: var(--border2); color: var(--muted); }
+.ctaBtn[data-variant='outline']:hover { border-color: var(--accent2); color: var(--accent2); }
+
+@media (max-width: 768px) {
+  .toolGrid { grid-template-columns: 1fr; }
+}

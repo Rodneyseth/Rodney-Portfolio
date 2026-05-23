@@ -61,6 +61,8 @@
 }
 .link:hover { color: var(--text); }
 .link:hover::after { transform: scaleX(1); }
+.linkActive { color: var(--text); }
+.linkActive::after { transform: scaleX(1); }
 .cta { font-size: 13px; padding: 10px 22px; }
 
 .burger {

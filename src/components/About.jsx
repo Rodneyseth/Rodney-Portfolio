@@ -2,9 +2,9 @@ import useInView from '../hooks/useInView'
 import styles from './About.module.css'
 
 const highlights = [
-  { icon: '📊', title: 'Executive Dashboards', desc: 'Building Power BI solutions that serve as a single source of truth for commercial, usage and campaign performance.' },
-  { icon: '📡', title: 'Telecom Analytics', desc: 'Deep expertise in GSM usage data, CDRs and customer lifecycle analytics across Voice, Data and SMS.' },
-  { icon: '⚡', title: 'Automation & Scale', desc: 'Eliminating manual reporting effort through automated pipelines, enabling faster and more accurate decision-making.' },
+  { icon: '📊', title: 'Executive Dashboards', desc: 'Building Power BI solutions that serve as a single source of truth for commercial, product and business performance.' },
+  { icon: '🛒', title: 'Market & Product Analytics', desc: 'Deep expertise in market products data — analysing product performance, pricing, mix and demand signals to drive portfolio decisions.' },
+  { icon: '⚡', title: 'Business Performance', desc: 'Translating revenue, KPI and operational data into clear performance narratives that inform executive strategy and planning.' },
 ]
 
 export default function About() {
@@ -19,15 +19,15 @@ export default function About() {
             <h2 className="section-title">Data-driven,<br /><span className="gradient-text">impact-focused</span></h2>
             <div className="divider" />
             <p className={styles.bio}>
-              Strategic and results-oriented Senior Analyst with over 6 years of experience leveraging
-              data to drive business intelligence, customer insights and product strategy within the
-              telecommunications sector.
+              Strategic and results-oriented Senior Analyst with over 6 years of experience specialising
+              in market products data and business performance analytics — turning complex datasets into
+              clear decisions that drive revenue, growth and competitive advantage.
             </p>
             <p className={styles.bio}>
               Skilled in designing data pipelines, building interactive dashboards and leading
-              cross-functional initiatives that turn complex data into clear and actionable strategies.
-              Experienced with GSM usage data, call detail records (CDRs) and customer lifecycle
-              analytics to support acquisition, retention and targeting programmes.
+              cross-functional initiatives across product, commercial and marketing domains. Experienced
+              in product performance analysis, market mix modelling, KPI frameworks and business
+              performance reporting within the telecoms industry.
             </p>
             <div className={styles.meta}>
               <span>📍 Nairobi, Kenya</span>

@@ -44,7 +44,22 @@
 .card:hover { transform: translateY(-8px); border-color: var(--border2); box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
 .card:hover::before { transform: scaleX(1); }
 
-.cardTop { display: flex; align-items: center; }
+.cardTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+.viewLink {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+  font-family: var(--mono);
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.viewLink:hover { opacity: 0.75; }
 
 .tag {
   font-size: 11px;

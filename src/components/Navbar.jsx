@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styles from './Navbar.module.css'
 
-const links = [
-  { href: '#about',      label: 'About' },
-  { href: '#skills',     label: 'Skills' },
-  { href: '#projects',   label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#contact',    label: 'Contact' },
+const tabs = [
+  { to: '/about',      label: 'About' },
+  { to: '/skills',     label: 'Skills' },
+  { to: '/projects',   label: 'Projects' },
+  { to: '/experience', label: 'Experience' },
+  { to: '/contact',    label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -19,23 +21,30 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const isActive = (to) => location.pathname === to || location.pathname.startsWith(to + '/')
+
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#hero" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <span className={styles.logoText}>RS</span>
           <span className={styles.logoDot} />
-        </a>
+        </Link>
 
         <nav className={`${styles.links} ${open ? styles.open : ''}`}>
-          {links.map(l => (
-            <a key={l.href} href={l.href} className={styles.link} onClick={() => setOpen(false)}>
-              {l.label}
-            </a>
+          {tabs.map(t => (
+            <Link
+              key={t.to}
+              to={t.to}
+              className={`${styles.link} ${isActive(t.to) ? styles.linkActive : ''}`}
+              onClick={() => setOpen(false)}
+            >
+              {t.label}
+            </Link>
           ))}
-          <a href="#contact" className={`btn btn-primary ${styles.cta}`} onClick={() => setOpen(false)}>
+          <Link to="/contact" className={`btn btn-primary ${styles.cta}`} onClick={() => setOpen(false)}>
             Hire Me
-          </a>
+          </Link>
         </nav>
 
         <button className={styles.burger} onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
