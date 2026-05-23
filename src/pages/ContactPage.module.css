@@ -73,6 +73,75 @@
   gap: 48px;
 }
 
+/* CV Download card */
+.cvCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent2) 12%, var(--surface)), var(--surface));
+  border: 1px solid color-mix(in srgb, var(--accent2) 35%, var(--border));
+  border-radius: 14px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 16px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.cvCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent2) 6%, transparent), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cvCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(6,182,212,0.2);
+  border-color: var(--accent2);
+}
+.cvCard:hover::before { opacity: 1; }
+
+.cvIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent2) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent2) 30%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent2);
+  flex-shrink: 0;
+}
+
+.cvText { flex: 1; }
+.cvLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent2);
+  margin-bottom: 3px;
+  font-family: var(--mono);
+}
+.cvName { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+.cvMeta { font-size: 11px; color: var(--muted); }
+
+.cvAction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--accent2);
+  flex-shrink: 0;
+}
+
 /* Info col */
 .infoList { display: flex; flex-direction: column; gap: 4px; margin-bottom: 32px; }
 .infoItem {
