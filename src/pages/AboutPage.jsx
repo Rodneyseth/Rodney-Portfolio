@@ -59,11 +59,25 @@ export default function AboutPage() {
             <h1 className={styles.name}>Rodney Seth Nyagonchong'a</h1>
             <p className={styles.role}>Senior Data Analyst · Market Products & Business Performance</p>
             <p className={styles.location}>📍 Nairobi, Kenya &nbsp;·&nbsp; ✉️ sethrodney17@gmail.com</p>
+            <div className={styles.heroBadges}>
+              <span className={styles.badge} data-color="accent">6+ yrs experience</span>
+              <span className={styles.badge} data-color="accent2">Telecoms · Fintech</span>
+              <span className={styles.badge} data-color="accent3">Open to roles</span>
+            </div>
           </div>
-          <div className={styles.heroBadges}>
-            <span className={styles.badge} data-color="accent">6+ yrs experience</span>
-            <span className={styles.badge} data-color="accent2">Telecoms · Fintech</span>
-            <span className={styles.badge} data-color="accent3">Open to roles</span>
+
+          {/* Illustration panel */}
+          <div className={styles.illustrationWrap}>
+            <img
+              src="/rodney-illustration.png"
+              alt="Artistic identity illustration"
+              className={styles.illustration}
+            />
+            <div className={styles.illustrationOverlay} />
+            <div className={styles.illustrationCaption}>
+              <span className={styles.captionLine} />
+              <span>Consistent. Focused. Precise.</span>
+            </div>
           </div>
         </div>
 

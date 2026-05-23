@@ -6,14 +6,17 @@
 
 /* ── Hero strip ── */
 .hero {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: center;
   margin-bottom: 48px;
 }
-.heroText { display: flex; flex-direction: column; gap: 10px; }
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .name {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 800;
@@ -28,7 +31,7 @@
   gap: 10px;
   flex-wrap: wrap;
   align-items: flex-start;
-  padding-top: 8px;
+  margin-top: 8px;
 }
 .badge {
   font-size: 12px;
@@ -41,6 +44,60 @@
 .badge[data-color='accent'] { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .badge[data-color='accent2'] { color: var(--accent2); border-color: var(--accent2); background: color-mix(in srgb, var(--accent2) 10%, transparent); }
 .badge[data-color='accent3'] { color: var(--accent3); border-color: var(--accent3); background: color-mix(in srgb, var(--accent3) 10%, transparent); }
+
+/* ── Illustration panel ── */
+.illustrationWrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  aspect-ratio: 1;
+}
+.illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+.illustrationWrap:hover .illustration { transform: scale(1.04); }
+
+/* Dark gradient at the bottom for text legibility */
+.illustrationOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(4,6,15,0.85) 0%,
+    rgba(4,6,15,0.2) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.illustrationCaption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.captionLine {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--accent2);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
 
 /* ── Sections ── */
 .section { padding: 56px 0; border-top: 1px solid var(--border); }
@@ -206,6 +263,7 @@
 @media (max-width: 768px) {
   .bioCols { grid-template-columns: 1fr; gap: 24px; }
   .principlesGrid { grid-template-columns: 1fr; }
-  .hero { flex-direction: column; }
+  .hero { grid-template-columns: 1fr; }
+  .illustrationWrap { aspect-ratio: 16/9; }
   .eduCard { flex-direction: column; gap: 12px; }
 }
