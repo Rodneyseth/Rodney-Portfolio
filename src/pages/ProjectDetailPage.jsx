@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { projects } from '../data/projects'
+import ChurnDemo from '../components/ChurnDemo'
 import styles from './ProjectDetailPage.module.css'
 
 const ICONS = {
@@ -12,13 +13,14 @@ const ICONS = {
   chart:   { glyph: '󰄧', color: '#f472b6' },
   pdf:     { glyph: '󰈦', color: '#fb7185' },
   log:     { glyph: '󰋊', color: '#94a3b8' },
+  model:   { glyph: '◉',  color: '#e879f9' },
 }
 
 function FolderIcon({ type, size = 16 }) {
   const colors = {
     data: '#60a5fa', sql: '#a78bfa', python: '#facc15',
     excel: '#4ade80', powerbi: '#f97316', chart: '#f472b6',
-    pdf: '#fb7185', log: '#94a3b8',
+    pdf: '#fb7185', log: '#94a3b8', model: '#e879f9',
   }
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill={colors[type] || '#94a3b8'}>
@@ -131,7 +133,11 @@ export default function ProjectDetailPage() {
 
         {/* Content panel */}
         <main className={styles.content}>
-          {folder ? (
+          {folder?.demo ? (
+            <div className={styles.panel}>
+              <ChurnDemo />
+            </div>
+          ) : folder ? (
             <div className={styles.panel}>
 
               {/* Panel header */}
