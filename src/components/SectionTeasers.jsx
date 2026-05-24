@@ -65,7 +65,7 @@ const sections = [
     label: 'Contact',
     accent: '#06b6d4',
     headline: 'Open to the right opportunity.',
-    body: 'Available for senior analyst roles, BI consulting engagements and analytics partnerships. Based in Nairobi, open to remote and international opportunities. Responds within 24 hours.',
+    body: 'Available for senior analyst roles, BI consulting engagements and analytics partnerships. Based in Nairobi, open to remote and international opportunities. I respond within 24 hours.',
     bullets: [
       'sethrodney17@gmail.com · +254 703 120 578',
       'Open to: telecoms, fintech, FMCG, e-commerce and any data-rich domain',

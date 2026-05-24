@@ -18,7 +18,7 @@ const jobs = [
     responsibilities: [
       {
         area: 'KPI Ownership & Metric Governance',
-        detail: 'Define, align and maintain the organisation\'s core KPI framework covering revenue, ARPU, active base, churn, conversion and channel performance. I own the metric definitions that feed every executive report and mediate when teams disagree on numbers — ensuring a single version of truth across marketing, product, CVM and regional squads.',
+        detail: 'Define, align and maintain the organisation\'s core KPI framework covering revenue, ARPU, active base, churn, conversion and channel performance. I own the metric definitions that feed every executive report and mediate when teams disagree on numbers — ensuring a single version of the truth across marketing, product, CVM and regional squads.',
       },
       {
         area: 'Executive Dashboard Design & Delivery',
@@ -34,7 +34,7 @@ const jobs = [
       },
       {
         area: 'Campaign Performance & CVM Analytics',
-        detail: 'Built near-real-time campaign tracking reports that enabled the CVM and marketing squads to optimise in-flight campaigns. Measure uplift, redemption rates, revenue impact and customer response rates across all active campaigns.',
+        detail: 'Built near-real-time campaign tracking reports that enabled the CVM and marketing squads to optimise in-flight campaigns. Measuring uplift, redemption rates, revenue impact and customer response rates across all active campaigns.',
       },
       {
         area: 'Cross-functional Stakeholder Engagement',
@@ -44,7 +44,7 @@ const jobs = [
     achievements: [
       'Consolidated 10+ siloed legacy reports into a single Power BI dashboard suite — adopted by C-suite within 8 weeks of launch and now the organisation\'s primary commercial performance tool.',
       'Designed Airtel Kenya\'s first unified KPI framework, aligning definitions across marketing, product, CVM and 4 regional teams — eliminating recurring metric disputes in monthly business reviews.',
-      'Automated the weekly KPI reporting pipeline, cutting ~12 hours of manual data preparation per cycle and improving delivery from T+3 days to same-day.',
+      'Automated the weekly KPI reporting pipeline, cutting ~12 hours of manual data preparation per cycle and improving delivery from T+3 to same-day.',
       'Delivered market product performance analytics that directly informed 3 major product portfolio decisions, including a pricing restructure and a data bundle consolidation.',
       'Built a near-real-time campaign performance tracker that reduced the CVM squad\'s decision cycle from weekly to daily, improving campaign ROI across active promotions.',
     ],
@@ -118,7 +118,7 @@ const jobs = [
     ],
     achievements: [
       'Executed a full SEO audit identifying 20+ on-page and technical issues — subsequent keyword optimisation contributed to a sustained increase in organic website traffic over 6 months.',
-      'Built the company\'s first digital analytics dashboard, giving leadership real-time visibility into campaign performance and website conversion metrics for the first time.',
+      'Built the company\'s first digital analytics dashboard, giving leadership real-time visibility into campaign performance and website conversion metrics.',
       'Streamlined 4 manual internal reporting processes, reducing the time spent on recurring reports by approximately 60% and improving consistency across outputs.',
     ],
     tools: ['Google Analytics', 'Excel', 'Google Search Console', 'Basic SQL'],
