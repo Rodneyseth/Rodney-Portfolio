@@ -9,6 +9,17 @@ export const projects = [
     status: 'Complete',
     folders: [
       {
+        id: '00_demo',
+        label: '00_demo',
+        type: 'folder',
+        icon: 'model',
+        phase: 'Interactive Demo',
+        summary: 'Select a customer profile to see live XGBoost churn predictions, SHAP explanations and retention recommendations.',
+        demo: true,
+        body: '',
+        files: [],
+      },
+      {
         id: '01_data',
         label: '01_data',
         type: 'folder',
@@ -122,17 +133,6 @@ xgb.fit(X_train, y_train)`,
         files: [
           { name: 'telco_churn_findings_report.pdf', note: 'Full findings & recommendations', link: '/telco_churn_report.pdf' },
         ],
-      },
-      {
-        id: '09_demo',
-        label: '09_demo',
-        type: 'folder',
-        icon: 'model',
-        phase: 'Interactive Demo',
-        summary: 'Select a customer profile to see live XGBoost churn predictions, SHAP explanations and retention recommendations.',
-        demo: true,
-        body: '',
-        files: [],
       },
       {
         id: '08_logs',

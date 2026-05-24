@@ -1,7 +1,7 @@
 .demo {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 /* ── Header ── */
@@ -41,7 +41,67 @@
   font-size: 13px;
   color: var(--muted);
   line-height: 1.8;
-  max-width: 640px;
+  max-width: 680px;
+  margin: 0;
+}
+
+/* ── Model scorecard ── */
+.scorecard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.scoreTile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.scoreVal {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: var(--mono);
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.scoreSub {
+  font-size: 11px;
+  color: var(--dim);
+  font-family: var(--mono);
+  line-height: 1.4;
+}
+
+/* ── Section shared ── */
+.sectionLabel {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.sectionHeading {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -115,7 +175,7 @@
   letter-spacing: 0.04em;
 }
 
-/* ── Output row: Gauge + SHAP ── */
+/* ── Gauge + SHAP ── */
 .outputRow {
   display: grid;
   grid-template-columns: 210px 1fr;
@@ -123,7 +183,6 @@
   align-items: stretch;
 }
 
-/* Gauge */
 .gaugePanel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -192,7 +251,7 @@
   animation: riskPulse 2s ease-in-out infinite;
 }
 @keyframes riskPulse {
-  0%, 100% { transform: scale(1);   opacity: 1; }
+  0%, 100% { transform: scale(1);    opacity: 1; }
   50%       { transform: scale(1.35); opacity: 0.65; }
 }
 
@@ -230,7 +289,7 @@
 .shapList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
 }
 
 .shapRow {
@@ -326,7 +385,7 @@
 .attrsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px 20px;
+  gap: 12px 20px;
 }
 
 .attrCell {
@@ -388,7 +447,7 @@
 }
 
 .recAction {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin: 0;
@@ -400,6 +459,30 @@
   color: var(--muted);
   line-height: 1.8;
   margin: 0;
+}
+
+.whyToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: var(--mono);
+  font-weight: 600;
+  padding: 0;
+  text-align: left;
+  transition: opacity 0.2s;
+}
+.whyToggle:hover { opacity: 0.7; }
+
+.whyText {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 0;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  border-left: 2px solid rgba(255,255,255,0.12);
 }
 
 .recFootnote {
@@ -422,13 +505,162 @@
   flex-shrink: 0;
 }
 
+/* ── Business Impact ── */
+.impactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.impactRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.impactTile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.impactVal {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: var(--mono);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.impactLabel {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fg);
+  margin-top: 4px;
+}
+
+.impactSub {
+  font-size: 11px;
+  color: var(--dim);
+  font-family: var(--mono);
+  line-height: 1.4;
+}
+
+/* ── Population breakdown ── */
+.popSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.popHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.popSub {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.popList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popRow {
+  display: grid;
+  grid-template-columns: 180px 1fr 80px;
+  gap: 12px;
+  align-items: center;
+}
+
+.popMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.popLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.popRange {
+  font-size: 10px;
+  font-family: var(--mono);
+  font-weight: 600;
+}
+
+.popTrack {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.popBar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.popStats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.popCount {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+.popPct {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.popNote {
+  font-size: 11px;
+  color: var(--dim);
+  font-family: var(--mono);
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
 /* ── Responsive ── */
-@media (max-width: 860px) {
+@media (max-width: 900px) {
+  .scorecard { grid-template-columns: repeat(2, 1fr); }
   .outputRow { grid-template-columns: 1fr; }
+  .impactRow { grid-template-columns: repeat(2, 1fr); }
+  .popRow { grid-template-columns: 140px 1fr 70px; }
 }
 
 @media (max-width: 640px) {
   .bottomRow { grid-template-columns: 1fr; }
+  .scorecard { grid-template-columns: repeat(2, 1fr); }
+  .impactRow { grid-template-columns: 1fr; }
   .shapRow { grid-template-columns: 1fr 1fr 30px; gap: 8px; }
   .attrsGrid { grid-template-columns: 1fr; }
+  .popRow { grid-template-columns: 120px 1fr 60px; gap: 8px; }
 }
