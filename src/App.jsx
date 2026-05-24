@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
-import ProjectsTeaser from './components/ProjectsTeaser'
+import SectionTeasers from './components/SectionTeasers'
 import AboutPage from './pages/AboutPage'
 import SkillsPage from './pages/SkillsPage'
 import ExperiencePage from './pages/ExperiencePage'
@@ -15,7 +15,7 @@ function HomePage() {
   return (
     <>
       <Hero />
-      <ProjectsTeaser />
+      <SectionTeasers />
     </>
   )
 }
