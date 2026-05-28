@@ -207,7 +207,7 @@ export default function ProjectDetailPage() {
                         onClick={() => setLightbox(c)}
                       >
                         <img
-                          src={`/projects/telco-churn/${c.file}`}
+                          src={`/projects/${id}/${c.file}`}
                           alt={c.label}
                           className={styles.chartImg}
                         />
@@ -254,7 +254,7 @@ export default function ProjectDetailPage() {
       {/* Lightbox */}
       {lightbox && (
         <ChartLightbox
-          src={`/projects/telco-churn/${lightbox.file}`}
+          src={`/projects/${id}/${lightbox.file}`}
           label={lightbox.label}
           onClose={() => setLightbox(null)}
         />
