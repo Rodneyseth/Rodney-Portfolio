@@ -3,88 +3,162 @@ import styles from './AppleRetailDemo.module.css'
 
 /* ── Dataset-level overview tiles ───────────────── */
 const datasetStats = [
-  { label: 'Sales Transactions', value: '1M+',  sub: 'Rows in the sales fact table' },
-  { label: 'Linked Tables',      value: '5',    sub: 'sales · products · category · stores · warranty' },
-  { label: 'Product Categories', value: '6',    sub: 'iPhone · Mac · iPad · Watch · AirPods · Accessories' },
-  { label: 'Global Stores',      value: '50+',  sub: 'Countries across Americas, Europe & APAC' },
+  { label: 'Sales Transactions', value: '1,040,200', sub: 'Rows in the sales fact table' },
+  { label: 'Linked Tables',      value: '5',         sub: 'sales · products · category · stores · warranty' },
+  { label: 'Product Categories', value: '10',        sub: 'Smartphone · Tablet · Laptop · Audio · Wearable · Desktop · Accessories · Subscription · Streaming · Smart Speaker' },
+  { label: 'Global Stores',      value: '75',        sub: 'Countries across Americas, Europe & APAC' },
 ]
 
 /* ── Pre-baked category data (Jan 2022 – Dec 2023) ─ */
 const categories = [
   {
-    id: 'iphone',
-    name: 'iPhone',
-    icon: '📱',
-    color: '#06b6d4',
-    tagline: "Apple's flagship revenue driver",
-    revenue: '$24.8B', growth: '+8.4%', peakMonth: 'Oct 2023', warrantyRate: '3.2%',
-    topProducts: [
-      { name: 'iPhone 15 Pro Max', pct: 38 },
-      { name: 'iPhone 15 Pro',     pct: 28 },
-      { name: 'iPhone 14',         pct: 18 },
-    ],
-    insight: 'September–October revenue spikes confirm the annual iPhone launch cycle. Q4 consistently delivers 3× the mid-year monthly average — the clearest seasonal pattern across all categories.',
-    data: [85,75,90,70,65,70,68,75,95,155,145,140,90,80,95,75,70,72,70,78,100,165,152,148],
-  },
-  {
-    id: 'mac',
-    name: 'Mac',
-    icon: '💻',
-    color: '#a855f7',
-    tagline: 'Steady growth driven by M-series chips',
-    revenue: '$8.2B', growth: '+14.7%', peakMonth: 'Nov 2023', warrantyRate: '2.1%',
-    topProducts: [
-      { name: 'MacBook Pro 14"', pct: 42 },
-      { name: 'MacBook Air M2',  pct: 35 },
-      { name: 'Mac mini M2',     pct: 15 },
-    ],
-    insight: 'Consistent upward trend driven by M-series chip adoption. A secondary back-to-school peak (Aug–Sep) adds a mid-year lift. The lowest warranty claim rate across all hardware categories.',
-    data: [60,58,65,62,65,68,70,82,85,90,95,88,65,62,70,67,68,72,75,88,90,95,102,95],
-  },
-  {
-    id: 'ipad',
-    name: 'iPad',
+    id: 'tablet',
+    name: 'Tablet',
     icon: '🟦',
     color: '#f59e0b',
-    tagline: 'Mature category — stable seasonal demand',
-    revenue: '$5.1B', growth: '+2.8%', peakMonth: 'Nov 2023', warrantyRate: '1.8%',
+    tagline: 'Highest absolute revenue — broad generational mix',
+    revenue: '$195.2M', growth: '-0.5%', peakMonth: 'Mar 2022', warrantyRate: '2.80%',
     topProducts: [
-      { name: 'iPad Pro 12.9"', pct: 35 },
-      { name: 'iPad Air',       pct: 30 },
-      { name: 'iPad 10th Gen',  pct: 25 },
+      { name: 'iPad mini (5th Generation)', pct: 13 },
+      { name: 'iPad (9th Generation)',       pct: 13 },
+      { name: 'iPad Pro (M2)',               pct: 12 },
     ],
-    insight: 'Flattest growth profile — reflects a mature product category. Holiday season (Nov–Dec) remains the single strongest demand driver. Lowest warranty claim rate of any hardware category.',
-    data: [55,50,58,52,48,50,52,60,58,65,68,65,52,48,55,50,46,48,52,62,60,68,70,68],
+    insight: 'Tablet leads all categories by 2023 revenue despite a -0.5% YoY decline. Revenue is distributed across four hardware generations in parallel with no single product above 13% — reflecting a broad installed base upgrading at different rates rather than a concentrated launch-driven demand cycle.',
+    data: [17290,14916,17625,15295,16789,16282,15833,16982,15379,16155,16453,17161,16414,14906,16703,15797,15838,15542,16954,17046,16322,17367,16140,16191],
   },
   {
-    id: 'watch',
-    name: 'Apple Watch',
+    id: 'accessories',
+    name: 'Accessories',
+    icon: '🔌',
+    color: '#f97316',
+    tagline: 'Flat, high-attach-rate revenue — MagSafe ecosystem',
+    revenue: '$191.0M', growth: '-0.4%', peakMonth: 'Aug 2022', warrantyRate: '2.84%',
+    topProducts: [
+      { name: 'MagSafe Charger',                   pct: 12 },
+      { name: 'Apple Pencil (2nd Generation)',      pct: 10 },
+      { name: 'Lightning to USB Cable',             pct: 10 },
+    ],
+    insight: 'Accessories revenue is nearly flat across the full 24-month window with the lowest peak-to-trough ratio of all hardware categories. The MagSafe ecosystem drives consistent attach-rate sales independent of launch cycles — revenue moves with the installed base, not product announcements.',
+    data: [16150,14281,16799,15576,16454,15382,16303,16877,15806,15787,15964,16302,16437,14372,16537,15892,16395,15523,15783,16085,15646,16032,15787,16500],
+  },
+  {
+    id: 'smartphone',
+    name: 'Smartphone',
+    icon: '📱',
+    color: '#06b6d4',
+    tagline: 'Flat seasonal profile — multi-generation product mix',
+    revenue: '$176.0M', growth: '-1.5%', peakMonth: 'Jan 2022', warrantyRate: '2.74%',
+    topProducts: [
+      { name: 'iPhone 12 mini', pct: 12 },
+      { name: 'iPhone 14',      pct: 11 },
+      { name: 'iPhone 12',      pct: 11 },
+    ],
+    insight: 'Unlike the classic Apple launch-cycle spike, smartphone revenue shows a notably flat seasonal profile — the highest single month (Jan 2022) is only 11% above the category average. Three iPhone 12-series models each claim ~11-12% share, indicating multiple generations active simultaneously with no single launch event dominating.',
+    data: [15555,14375,15228,14840,15186,15279,14675,14797,14513,15047,14684,14501,14650,13740,14846,14593,14578,14286,14857,15313,14306,15417,14254,15184],
+  },
+  {
+    id: 'audio',
+    name: 'Audio',
+    icon: '🎧',
+    color: '#ef4444',
+    tagline: 'Evenly split across Beats and AirPods product lines',
+    revenue: '$161.5M', growth: '-1.9%', peakMonth: 'Jul 2023', warrantyRate: '3.05%',
+    topProducts: [
+      { name: 'Beats Fit Pro',            pct: 15 },
+      { name: 'AirPods (3rd Generation)', pct: 15 },
+      { name: 'Beats Solo Pro',           pct: 14 },
+    ],
+    insight: 'Audio is the most evenly distributed category by product — Beats Fit Pro, AirPods 3rd Gen, and Beats Solo Pro each claim roughly equal share (~14-15%). Revenue declined 1.9% YoY with the July 2023 peak driven by mid-year promotional activity rather than a product launch.',
+    data: [14014,12732,13871,13686,14106,13556,13779,13969,13341,14025,13732,13723,13661,12006,13549,13327,13528,13310,14292,13631,13216,13650,13833,13454],
+  },
+  {
+    id: 'laptop',
+    name: 'Laptop',
+    icon: '💻',
+    color: '#a855f7',
+    tagline: 'Only hardware category with positive YoY revenue growth',
+    revenue: '$156.8M', growth: '+1.1%', peakMonth: 'May 2022', warrantyRate: '3.08%',
+    topProducts: [
+      { name: 'MacBook Air (Retina)', pct: 15 },
+      { name: 'MacBook Air (M1)',     pct: 15 },
+      { name: 'MacBook Air (M2)',     pct: 13 },
+    ],
+    insight: 'Laptop is the only hardware category showing positive YoY growth (+1.1%), driven by the MacBook Air line which holds three of the top four revenue positions. The M1→M2 transition created a double-peak effect with both generations selling concurrently through early 2023, maintaining momentum through the chip transition.',
+    data: [13525,11500,13181,13101,13842,12772,13121,12970,11872,13292,13147,12703,13029,12064,13085,12925,13599,13478,13333,13338,12973,13183,12906,12897],
+  },
+  {
+    id: 'wearable',
+    name: 'Wearable',
     icon: '⌚',
     color: '#22c55e',
-    tagline: 'Highest YoY growth — strong holiday skew',
-    revenue: '$4.6B', growth: '+22.1%', peakMonth: 'Nov 2023', warrantyRate: '2.7%',
+    tagline: 'Premium-tier demand anchors consistent wearable revenue',
+    revenue: '$134.8M', growth: '-1.6%', peakMonth: 'Oct 2022', warrantyRate: '2.67%',
     topProducts: [
-      { name: 'Watch Ultra 2',  pct: 45 },
-      { name: 'Watch Series 9', pct: 38 },
-      { name: 'Watch SE',       pct: 17 },
+      { name: 'Apple Watch Hermès', pct: 17 },
+      { name: 'Apple Watch Series 8', pct: 15 },
+      { name: 'Apple Watch SE',       pct: 15 },
     ],
-    insight: 'Strongest YoY growth of any category. The September launch window and November holiday season combine to create a 2.5× monthly revenue uplift in Q4 — making inventory planning critical.',
-    data: [35,32,38,35,36,38,40,42,55,75,88,85,38,35,42,38,40,42,44,48,62,82,95,92],
+    insight: 'Wearable revenue peaked in October 2022 and trended slightly lower (-1.6% YoY), consistent with the Apple Watch Series 8 cycle winding down before Series 9 launches. The Apple Watch Hermès edition leads at 17% — higher than any mainstream model — pointing to resilient demand at the premium tier.',
+    data: [11460,10587,11707,11246,11471,11390,11496,11385,11311,11903,11660,11404,11476,10449,11465,11564,10974,11322,11220,11575,11410,11116,11066,11192],
   },
   {
-    id: 'airpods',
-    name: 'AirPods',
-    icon: '🎵',
-    color: '#ef4444',
-    tagline: 'Most gift-driven — highest Q4 revenue concentration',
-    revenue: '$3.2B', growth: '+18.9%', peakMonth: 'Dec 2023', warrantyRate: '4.1%',
+    id: 'desktop',
+    name: 'Desktop',
+    icon: '🖥️',
+    color: '#6366f1',
+    tagline: 'iMac-driven — steady enterprise refresh demand',
+    revenue: '$110.0M', growth: '-1.0%', peakMonth: 'Aug 2022', warrantyRate: '2.80%',
     topProducts: [
-      { name: 'AirPods Pro 2nd Gen', pct: 52 },
-      { name: 'AirPods Max',         pct: 28 },
-      { name: 'AirPods 3rd Gen',     pct: 20 },
+      { name: 'iMac 27-inch',    pct: 23 },
+      { name: 'Mac Pro (Rack)',   pct: 17 },
+      { name: 'iMac Pro',        pct: 13 },
     ],
-    insight: 'December single-month share is 4× the mid-year baseline — the most gift-concentrated category in the portfolio. Highest warranty rate (4.1%) driven primarily by AirPods Pro units, warranting a closer look at the claim-to-sale lag.',
-    data: [30,28,32,28,30,32,35,38,42,55,85,95,32,30,35,30,32,35,38,42,48,62,90,100],
+    insight: 'Desktop revenue is steady but declining slightly (-1.0% YoY), largely on the strength of the iMac 27-inch which commands nearly a quarter of category revenue. No strong consumer seasonal pattern — desktop purchases correlate with enterprise hardware refresh cycles rather than product launch events.',
+    data: [9350,8976,9553,8968,9373,8694,9716,9768,8787,9627,8785,9466,9420,8917,9154,8976,9686,9008,8841,8825,8990,9549,9403,9234],
+  },
+  {
+    id: 'subscription',
+    name: 'Subscription Service',
+    icon: '☁️',
+    color: '#8b5cf6',
+    tagline: 'Smoothest revenue profile — services floor in the portfolio',
+    revenue: '$76.5M', growth: '+0.4%', peakMonth: 'Dec 2022', warrantyRate: '2.95%',
+    topProducts: [
+      { name: 'Apple Music',    pct: 34 },
+      { name: 'iCloud',         pct: 21 },
+      { name: 'Apple Fitness+', pct: 16 },
+    ],
+    insight: 'Subscription Service is the most predictable revenue stream in the portfolio — the smoothest monthly profile with the smallest seasonal variance of any category. Apple Music commands 34% share, nearly double iCloud, reflecting the broader Apple services growth narrative. Revenue grew modestly (+0.4% YoY), consistent with subscriber base expansion.',
+    data: [6540,6073,6561,5989,6434,6327,6223,6531,6225,5985,6432,6838,6803,5686,6287,6540,6573,6230,6436,6297,6406,6236,6531,6429],
+  },
+  {
+    id: 'streaming',
+    name: 'Streaming Device',
+    icon: '📺',
+    color: '#14b8a6',
+    tagline: 'Fastest YoY growth — dual Apple TV model parity',
+    revenue: '$39.7M', growth: '+3.3%', peakMonth: 'Dec 2022', warrantyRate: '2.64%',
+    topProducts: [
+      { name: 'Apple TV HD',                   pct: 42 },
+      { name: 'Apple TV 4K',                   pct: 42 },
+      { name: 'Apple TV (3rd Generation)',      pct: 16 },
+    ],
+    insight: 'Streaming Device posts the highest YoY growth in the portfolio (+3.3%), with Apple TV HD and Apple TV 4K perfectly matched at 42% share — an unusually symmetric split indicating both models address distinct customer segments with minimal cannibalization. December peaks confirm a strong gifting use case.',
+    data: [3080,3042,3318,3232,3291,3148,3059,3137,3175,3302,2973,3722,3352,2908,3531,3199,3162,3209,3506,3396,3468,3290,3325,3388],
+  },
+  {
+    id: 'smart-speaker',
+    name: 'Smart Speaker',
+    icon: '🔊',
+    color: '#ec4899',
+    tagline: 'HomePod dominates — steepest YoY revenue decline',
+    revenue: '$19.9M', growth: '-3.4%', peakMonth: 'Apr 2022', warrantyRate: '3.14%',
+    topProducts: [
+      { name: 'HomePod',      pct: 82 },
+      { name: 'HomePod mini', pct: 18 },
+    ],
+    insight: 'Smart Speaker is the smallest revenue category and the only one with a two-SKU product mix. HomePod commands 82% of category revenue, making this the most concentrated product-to-revenue ratio in the dataset. The -3.4% YoY decline is the steepest in the portfolio, reflecting category headwinds and limited SKU diversity.',
+    data: [1716,1622,1809,1874,1799,1535,1802,1619,1705,1655,1785,1704,1570,1679,1595,1677,1854,1741,1749,1561,1515,1723,1689,1566],
   },
 ]
 
@@ -202,7 +276,7 @@ export default function AppleRetailDemo() {
         </div>
         <p className={styles.desc}>
           Select a product category to explore its revenue trend, seasonal patterns, top products and warranty profile.
-          All outputs derived from the Apple Retail Sales dataset (1M+ transactions, Jan 2022 – Dec 2023).
+          All outputs derived from the Apple Retail Sales dataset (1,040,200 transactions, Jan 2022 – Dec 2023).
         </p>
       </div>
 
@@ -244,10 +318,10 @@ export default function AppleRetailDemo() {
       {/* Metrics row */}
       <div className={styles.metricsRow}>
         {[
-          { label: 'Est. Period Revenue', value: selected.revenue,     sub: 'Jan 2022 – Dec 2023' },
-          { label: 'YoY Revenue Growth',  value: selected.growth,      sub: '2022 → 2023' },
-          { label: 'Peak Month',          value: selected.peakMonth,    sub: 'Highest single-month index' },
-          { label: 'Warranty Claim Rate', value: selected.warrantyRate, sub: '% of units sold with a claim' },
+          { label: '2023 Revenue',         value: selected.revenue,      sub: 'Annual total from SQL aggregation' },
+          { label: 'YoY Revenue Growth',   value: selected.growth,       sub: '2022 → 2023' },
+          { label: 'Peak Month',           value: selected.peakMonth,    sub: 'Highest single-month index' },
+          { label: 'Warranty Claim Rate',  value: selected.warrantyRate, sub: '% of units sold with a claim' },
         ].map(m => (
           <div key={m.label} className={styles.metricTile}>
             <span className={styles.metricVal} style={{ color: selected.color }}>{m.value}</span>
@@ -289,7 +363,7 @@ export default function AppleRetailDemo() {
             ))}
           </div>
           <p className={styles.productNote}>
-            Revenue share estimates based on category-level SQL aggregation from sales × products join.
+            Revenue share derived from category-level SQL aggregation via sales × products join.
           </p>
         </div>
 

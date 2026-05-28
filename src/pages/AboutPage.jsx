@@ -15,7 +15,7 @@ const principles = [
   {
     icon: '🗣️',
     title: 'Insight without communication is noise',
-    body: 'A chart nobody reads solved nothing. I invest in the narrative around the numbers — making findings accessible to engineers, executives and everyone in between.',
+    body: 'A chart nobody reads solves nothing. I invest in the narrative around the numbers — making findings accessible to engineers, executives and everyone in between.',
   },
   {
     icon: '⚙️',
