@@ -3,6 +3,7 @@ import { Link, useParams, Navigate } from 'react-router-dom'
 import { projects } from '../data/projects'
 import ChurnDemo from '../components/ChurnDemo'
 import AppleRetailDemo from '../components/AppleRetailDemo'
+import PaySimDemo from '../components/PaySimDemo'
 import styles from './ProjectDetailPage.module.css'
 
 const ICONS = {
@@ -136,7 +137,7 @@ export default function ProjectDetailPage() {
         <main className={styles.content}>
           {folder?.demo ? (
             <div className={styles.panel}>
-              {folder.demoType === 'apple' ? <AppleRetailDemo /> : <ChurnDemo />}
+              {folder.demoType === 'apple' ? <AppleRetailDemo /> : folder.demoType === 'paysim' ? <PaySimDemo /> : <ChurnDemo />}
             </div>
           ) : folder ? (
             <div className={styles.panel}>

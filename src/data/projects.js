@@ -150,6 +150,170 @@ xgb.fit(X_train, y_train)`,
     ],
   },
   {
+    id: 'paysim-mobile-money',
+    tag: 'Python · SQL · Business Analytics',
+    title: 'PaySim Mobile Money Analytics',
+    desc: 'End-to-end business performance analytics on 6.3M synthetic mobile money transactions — transaction volumes, product mix, customer segmentation, merchant performance, liquidity flows, and operational KPIs modelled on M-Pesa / Safaricom data.',
+    metrics: ['6,362,620 transactions', '5 transaction types', '30-day simulation'],
+    accent: '#22c55e',
+    status: 'Complete',
+    folders: [
+      {
+        id: '00_demo',
+        label: '00_demo',
+        type: 'folder',
+        icon: 'model',
+        phase: 'Interactive Demo',
+        summary: 'Select a transaction type to explore daily volume trends, value contribution, and behavioural patterns across the 30-day simulation.',
+        demo: true,
+        demoType: 'paysim',
+        body: '',
+        files: [],
+      },
+      {
+        id: '01_data',
+        label: '01_data',
+        type: 'folder',
+        icon: 'data',
+        phase: 'Data Ingestion',
+        summary: 'PaySim synthetic mobile money dataset — 6.3M transactions, 11 columns, modelled on M-Pesa / Safaricom.',
+        body: `The dataset is a synthetic mobile money simulation generated from real M-Pesa transaction logs (Kaggle — ealaxi/paysim1). It models 30 days of platform activity across 6,362,620 transactions.\n\nSchema overview:\n• step — hour of simulation (1–743)\n• type — CASH_IN, CASH_OUT, DEBIT, PAYMENT, TRANSFER\n• amount — transaction value (USD equivalent)\n• nameOrig / nameDest — account IDs (C = customer, M = merchant)\n• oldbalanceOrg / newbalanceOrig — sender balance before/after\n• oldbalanceDest / newbalanceDest — receiver balance before/after\n• isFraud — ground-truth fraud label (0/1)\n• isFlaggedFraud — system-flagged fraud (0/1)\n\nLoaded into Supabase PostgreSQL under the paysim schema (separate from telco and apple_retail schemas on the same project).`,
+        files: [
+          { name: 'PS_20174392719_1491204439457_log.csv', size: '~470 MB', note: 'Source: Kaggle / ealaxi/paysim1 — 6.36M rows' },
+        ],
+      },
+      {
+        id: '02_sql',
+        label: '02_sql',
+        type: 'folder',
+        icon: 'sql',
+        phase: 'Schema & Analytical Views',
+        summary: 'Schema creation and 15 analytical views built in Supabase (PostgreSQL) — covering daily trends, type performance, hourly patterns, merchant analytics, customer tiers, and liquidity flows.',
+        body: `Two SQL scripts handle the full data layer:\n\n01_create_schema.sql — typed schema with primary key, indexes on tx_day, tx_hour, tx_type, and name_dest for query performance.\n02_analytical_views.sql — 15 views covering every analytical module:\n• v_daily_summary — daily volume, value, avg amount, active customers\n• v_type_performance — per-type count, value, % share of volume and value\n• v_daily_by_type — daily breakdown by transaction type\n• v_hourly_pattern — avg transactions per hour across the simulation\n• v_amount_distribution — percentile distribution of transaction amounts\n• v_cumulative_growth — cumulative volume and value growth over 30 days\n• v_daily_value_flow — net value flow per day (inflow vs outflow)\n• v_top_merchants — top merchant accounts by total inflow and volume\n• v_customer_tiers — Whale / High / Mid / Low segmentation by spend\n• v_liquidity_flow — platform-level net balance movement by account type\n• v_weekly_kpis — week-over-week KPIs: volume, value, avg amount, active users\n• v_avg_tx_size_by_type — average transaction size trend per type over time\n• v_daily_active_customers — daily unique active customer count`,
+        files: [
+          { name: '01_create_schema.sql', note: 'Schema + indexes' },
+          { name: '02_analytical_views.sql', note: '15 analytical views — full business intelligence layer' },
+        ],
+        snippet: `-- Transaction type performance: volume %, value %, avg and median amount
+WITH totals AS (
+    SELECT COUNT(*) AS all_count, SUM(amount) AS all_value
+    FROM paysim.transactions
+)
+SELECT
+    t.tx_type,
+    COUNT(*)                                                   AS tx_count,
+    ROUND(100.0 * COUNT(*) / tot.all_count, 2)                 AS pct_volume,
+    SUM(t.amount)                                              AS total_value,
+    ROUND(100.0 * SUM(t.amount) / tot.all_value, 2)            AS pct_value,
+    ROUND(AVG(t.amount)::NUMERIC, 2)                           AS avg_amount,
+    ROUND(PERCENTILE_CONT(0.5) WITHIN GROUP
+          (ORDER BY t.amount)::NUMERIC, 2)                     AS median_amount
+FROM paysim.transactions t
+CROSS JOIN totals tot
+GROUP BY t.tx_type, tot.all_count, tot.all_value
+ORDER BY total_value DESC;`,
+      },
+      {
+        id: '03_python',
+        label: '03_python',
+        type: 'folder',
+        icon: 'python',
+        phase: 'EDA Pipeline',
+        summary: 'Transaction volume and pattern analysis — daily trends by type, type mix, hourly heatmap, amount distributions, value flows, and cumulative growth.',
+        body: `paysim_eda.py runs the exploratory analysis pipeline pulling from Supabase analytical views:\n\n• Daily transaction volume and value by type — stacked area charts (CASH_OUT, PAYMENT, CASH_IN, TRANSFER, DEBIT)\n• Transaction type mix — volume % vs value % dual pie chart showing how type share of count differs from share of value\n• Hourly transaction heatmap — 24-hour pattern averaged across all 30 days, showing peak activity windows\n• Amount distribution — percentile bar chart per transaction type revealing median vs tail spend behaviour\n• Daily value flow — net inflow vs outflow over the simulation period\n• Cumulative growth — 30-day running total of transaction count and platform value\n\nAll outputs saved to 06_outputs/ at 150 DPI.`,
+        files: [
+          { name: 'paysim_eda.py', note: 'EDA pipeline — volumes, type mix, hourly patterns, distributions' },
+        ],
+        snippet: `# Daily transaction volume by type (stacked area)
+def plot_daily_volume():
+    df = q('SELECT * FROM v_daily_by_type ORDER BY tx_day, tx_type')
+    pivot = df.pivot(index='tx_day', columns='tx_type',
+                     values='tx_count').fillna(0)
+
+    fig, axes = plt.subplots(2, 1, figsize=(14, 8), sharex=True)
+
+    # Volume stacked area
+    pivot[cols].plot.area(ax=axes[0], color=colors, alpha=0.85, linewidth=0)
+    axes[0].yaxis.set_major_formatter(
+        mticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
+
+    # Value stacked area
+    pivot_v = df.pivot(index='tx_day', columns='tx_type',
+                       values='total_value').fillna(0)
+    pivot_v[cols].plot.area(ax=axes[1], color=colors, alpha=0.85, linewidth=0)
+    axes[1].yaxis.set_major_formatter(
+        mticker.FuncFormatter(lambda x, _: f'$\{x/1e9:.1f\}B'))`,
+      },
+      {
+        id: '04_analysis',
+        label: '04_analysis',
+        type: 'folder',
+        icon: 'python',
+        phase: 'Business Performance Analysis',
+        summary: 'Merchant analytics, customer tier segmentation, liquidity flow, and weekly KPI tracking — the operational intelligence layer.',
+        body: `business_performance.py runs the business analytics pipeline across four modules:\n\n• Top 20 merchants — ranked by total inflow value and transaction volume; dual bar + bubble chart showing inflow vs volume concentration\n• Customer tier segmentation — Whale / High / Mid / Low tiers based on transaction frequency and total spend; donut chart + tier summary table\n• Liquidity flow analysis — net balance movement by account type (customer vs merchant) across the simulation; shows capital accumulation and drawdown patterns\n• Weekly KPIs — week-over-week summary: total volume, total value, avg transaction size, daily active customers, and WoW growth rates\n• Supporting charts: avg transaction size trend by type over 30 days; daily active customer count with 7-day rolling average`,
+        files: [
+          { name: 'business_performance.py', note: 'Merchant analytics, customer tiers, liquidity flow, weekly KPIs' },
+        ],
+        snippet: `# Customer tier segmentation: Whale / High / Mid / Low
+def plot_customer_tiers():
+    df = q('SELECT * FROM v_customer_tiers ORDER BY total_spend DESC')
+
+    tiers = df.groupby('tier').agg(
+        customers=('name_orig', 'count'),
+        total_spend=('total_spend', 'sum'),
+        avg_tx=('tx_count', 'mean')
+    ).reindex(['Whale', 'High', 'Mid', 'Low'])
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    colors = [TIER_COLORS[t] for t in tiers.index]
+
+    # Donut: share of total platform value by tier
+    axes[0].pie(tiers['total_spend'], labels=tiers.index,
+                colors=colors, autopct='%1.1f%%',
+                wedgeprops={'width': 0.5}, startangle=90)
+    axes[0].set_title('Platform Value Share by Customer Tier')`,
+      },
+      {
+        id: '06_outputs',
+        label: '06_outputs',
+        type: 'folder',
+        icon: 'chart',
+        phase: 'Visualisations',
+        summary: 'All 12 chart outputs from the EDA and business performance pipelines.',
+        body: 'Chart outputs generated by paysim_eda.py and business_performance.py. Click any chart to view full size.',
+        files: [],
+        charts: [
+          { file: '01_daily_volume.png',        label: 'Daily Volume',            desc: 'Daily transaction count and value by type — stacked area over 30 days' },
+          { file: '02_type_mix.png',             label: 'Type Mix',                desc: 'Volume % vs value % split per transaction type — dual pie chart' },
+          { file: '03_hourly_heatmap.png',       label: 'Hourly Heatmap',          desc: 'Average transaction activity by hour of day across the simulation' },
+          { file: '04_amount_distribution.png',  label: 'Amount Distribution',     desc: 'Percentile distribution of transaction amounts per type' },
+          { file: '05_daily_value.png',          label: 'Daily Value Flow',         desc: 'Net daily inflow vs outflow across the 30-day simulation' },
+          { file: '06_cumulative_growth.png',    label: 'Cumulative Growth',        desc: '30-day running total of transaction count and platform value' },
+          { file: '07_top_merchants.png',        label: 'Top Merchants',            desc: 'Top 20 merchant accounts by total inflow value and transaction volume' },
+          { file: '08_customer_tiers.png',       label: 'Customer Tiers',           desc: 'Whale / High / Mid / Low segmentation by spend — value share donut' },
+          { file: '09_liquidity_flow.png',       label: 'Liquidity Flow',           desc: 'Net balance movement by account type over the simulation period' },
+          { file: '10_weekly_kpis.png',          label: 'Weekly KPIs',              desc: 'Week-over-week volume, value, avg transaction size, and active users' },
+          { file: '11_avg_tx_size.png',          label: 'Avg Transaction Size',     desc: 'Average transaction size trend per type over 30 days' },
+          { file: '12_daily_active_customers.png', label: 'Daily Active Customers', desc: 'Daily unique active customer count with 7-day rolling average' },
+        ],
+      },
+      {
+        id: '07_findings',
+        label: '07_findings',
+        type: 'folder',
+        icon: 'pdf',
+        phase: 'Findings Report',
+        summary: 'Compiled PDF report covering transaction analysis, product mix, customer segmentation, merchant performance, liquidity flows, and business recommendations.',
+        body: `The final deliverable -- a 10-page structured report covering:\n\n- Project overview, dataset schema, and full tech stack\n- All 15 PostgreSQL analytical views with descriptions\n- Transaction volume analysis -- daily trends, type mix, hourly heatmap\n- Amount distribution and temporal patterns\n- Value flow and 30-day cumulative growth analysis\n- Merchant performance -- top 20 merchants by inflow and volume\n- Customer tier segmentation -- Whale / High / Mid / Low value tiers\n- Platform liquidity analysis -- net CASH_IN vs CASH_OUT flow\n- Weekly KPI summary with supplementary charts\n- 6 key business findings with strategic implications\n- Methodology walkthrough and next steps (fraud detection, forecasting, Power BI)`,
+        files: [
+          { name: 'paysim_mobile_money_report.pdf', note: '10-page findings and recommendations report', link: '/paysim_mobile_money_report.pdf' },
+          { name: 'generate_paysim_report.py', note: 'fpdf2-based PDF generator script' },
+        ],
+      },
+    ],
+  },
+  {
     id: 'revenue-forecasting',
     tag: 'Python · SQL · Time Series',
     title: 'Revenue Forecasting Model',
