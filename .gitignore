@@ -22,3 +22,32 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ── Credentials / Environment ──────────────────────────────
+.env
+*.env
+Suupabase.env
+master/
+
+# ── Large raw data files ───────────────────────────────────
+# Paysim CSV (~470 MB) — too large for GitHub
+projects/04_paysim-mobile-money/01_data/*.csv
+# Apple Retail large tables (~85 MB + ~8 MB)
+projects/03_apple-retail/01_data/sales.csv
+projects/03_apple-retail/01_data/warranty.csv
+# Telco churn CSV (~955 KB) and revenue-forecasting data are kept
+
+# ── Python cache ───────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ── Excel / Office temp files ──────────────────────────────
+~$*.xlsx
+~$*.docx
+.~lock.*
+
+# ── Misc ───────────────────────────────────────────────────
+Thumbs.db
+.ipynb_checkpoints/

@@ -1,0 +1,5 @@
+gender,senior_citizen,customers,churn_rate_pct,avg_charges
+Female,True,568,42.25,81.11
+Male,True,574,41.11,78.54
+Female,False,2920,23.94,62.11
+Male,False,2981,23.28,61.59
