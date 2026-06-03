@@ -23,12 +23,41 @@ const faq = [
   { q: 'How quickly do you respond?', a: 'Within 24 hours on business days.' },
 ]
 
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID'
+
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const submit = e => { e.preventDefault(); setSent(true) }
+
+  const submit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (res.ok) {
+        setSent(true)
+        setForm({ name: '', email: '', subject: '', message: '' })
+      } else {
+        const data = await res.json()
+        setError(data.error || 'Something went wrong. Please email me directly.')
+      }
+    } catch {
+      setError('Network error. Please check your connection or email me directly.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -153,8 +182,13 @@ export default function ContactPage() {
                     <label>Message</label>
                     <textarea name="message" rows={7} value={form.message} onChange={handle} placeholder="Tell me about the role, project or opportunity — the more detail the better." required />
                   </div>
-                  <button type="submit" className={styles.submitBtn}>
-                    Send Message →
+                  {error && (
+                    <p className={styles.errorMsg}>
+                      ⚠ {error}
+                    </p>
+                  )}
+                  <button type="submit" className={styles.submitBtn} disabled={loading}>
+                    {loading ? 'Sending…' : 'Send Message →'}
                   </button>
                 </>
               )}

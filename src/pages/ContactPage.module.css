@@ -223,7 +223,19 @@ a.infoVal:hover { color: var(--accent2); }
   cursor: pointer;
   transition: opacity 0.2s;
 }
-.submitBtn:hover { opacity: 0.85; }
+.submitBtn:hover:not(:disabled) { opacity: 0.85; }
+.submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.errorMsg {
+  font-size: 13px;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0;
+  line-height: 1.5;
+}
 
 .success {
   display: flex;
