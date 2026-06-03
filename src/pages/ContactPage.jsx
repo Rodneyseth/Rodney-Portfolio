@@ -23,7 +23,7 @@ const faq = [
   { q: 'How quickly do you respond?', a: 'Within 24 hours on business days.' },
 ]
 
-const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORM_ID'
+const FORMSPREE_URL = 'https://formspree.io/f/xjgdvvek'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
